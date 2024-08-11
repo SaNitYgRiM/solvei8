@@ -18,6 +18,6 @@ describe('MockDataService', () => {
   it('should validate user correctly', () => {
     const emailOrPhone = 'test@example.com';
     const result = service.validateUser(emailOrPhone);
-    expect(result).toBe(true); // Adjust the expected result based on your logic
+    expect(result).toBe(true); 
   });
 });

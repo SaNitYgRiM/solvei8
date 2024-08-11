@@ -1,26 +1,50 @@
-<div>
-  <h2>Signup Step 2</h2>
-  <form>
-	<label for="organizationName">Organization Name:</label>
-	<input type="text" id="organizationName" [(ngModel)]="organizationName" name="organizationName" required />
+<div class="signup-container">
+  <mat-card>
+	<mat-card-title></mat-card-title>
+	<mat-card-content>
+	  <form>
+		<mat-form-field appearance="fill">
+		  <mat-label>Organization Name</mat-label>
+		  <mat-select [(value)]="organizationName">
+			<mat-option *ngFor="let org of allowedOrganizations" [value]="org" >
+			  {{ org }}
+			</mat-option>
+		  </mat-select>
+		</mat-form-field>
 
-	<label for="designation">Designation:</label>
-	<select id="designation" [(ngModel)]="designation" name="designation" required>
-	  <option *ngFor="let designation of designations" [value]="designation">{{ designation }}</option>
-	</select>
+		<mat-form-field appearance="fill">
+		  <mat-label>Designation</mat-label>
+		  <mat-select [(value)]="designation">
+			<mat-option *ngFor="let des of designations" [value]="des" >
+			  {{ des }}
+			</mat-option>
+		  </mat-select>
+		</mat-form-field>
 
-	<label for="birthDate">Birth Date:</label>
-	<input type="date" id="birthDate" [(ngModel)]="birthDate" name="birthDate" required />
+		<mat-form-field appearance="fill">
+		  <mat-label>Birth Date</mat-label>
+		  <input matInput [matDatepicker]="picker" [(ngModel)]="birthDate" name="birthDate" required>
+		  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		  <mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
 
-	<label for="city">City:</label>
-	<input type="text" id="city" [(ngModel)]="city" name="city" required />
+		<mat-form-field appearance="fill">
+		  <mat-label>City</mat-label>
+		  <input matInput [(ngModel)]="city" name="city" required>
+		</mat-form-field>
 
-	<label for="pincode">Pincode:</label>
-	<input type="text" id="pincode" [(ngModel)]="pincode" name="pincode" required />
+		<mat-form-field appearance="fill">
+		  <mat-label>Pincode</mat-label>
+		  <input matInput [(ngModel)]="pincode" name="pincode" required>
+		</mat-form-field>
 
-	<div *ngIf="signUpError">{{ signUpError }}</div> <!-- Display error message -->
+		<div *ngIf="signUpError" class="error-message">{{ signUpError }}</div>
 
-	<button type="button" (click)="back()">Back</button>
-	<button type="button" (click)="submit()">Submit</button>
-  </form>
+		<div class="button-group">
+		  <button mat-raised-button color="primary" (click)="back()">Back</button>
+		  <button mat-raised-button color="accent" (click)="submit()">Submit</button>
+		</div>
+	  </form>
+	</mat-card-content>
+  </mat-card>
 </div>

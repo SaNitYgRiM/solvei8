@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -13,8 +14,7 @@ import { selectUserExists } from '../../store/auth.selectors';
 })
 export class WelcomeComponent implements OnInit {
   public welcomeForm: FormGroup;
-  public submitted = false;
-
+  emailOrPhone: string = '';
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
@@ -26,29 +26,32 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(selectUserExists).subscribe(exists => {
-      console.log('User exists:', exists); // Debug log
-      if (this.submitted) {
-        if (exists) {
-          this.router.navigate(['/login']);
-        } else {
-          this.router.navigate(['/signup-step1']);
-        }
-      }
-    });
+    
   }
 
   onSubmit(): void {
-    this.submitted = true;
     console.log('Form submitted'); // Debug log
 
     if (this.welcomeForm.invalid) {
-      console.log('Form is invalid'); // Debug log
+      console.log('Form is invalid'); 
       return;
     }
 
     const identifier = this.welcomeForm.get('emailOrPhone')?.value;
-    console.log('Dispatching validateUser action with identifier:', identifier); // Debug log
+    console.log('Dispatching validateUser action with identifier:', identifier); 
     this.store.dispatch(AuthActions.validateUser({ identifier }));
+
+
+    this.store.select(selectUserExists).subscribe(exists => {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('emailOrPhone',identifier);
+      }
+      console.log('User exists:', exists); 
+      if (exists) {
+        this.router.navigate(['/login']);
+      } else {
+        this.router.navigate(['/signup-step1']);
+      }
+    });
   }
 }

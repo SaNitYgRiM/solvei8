@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from './../../../../services/auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +11,31 @@ export class LoginComponent {
   emailOrPhone: string = '';
   password: string = '';
   loginError: string = '';
+  //public isLoggedIn = false; 
 
-  constructor(private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
+    if (typeof localStorage !== 'undefined') {
+      this.emailOrPhone = localStorage.getItem('emailOrPhone') || '';
+      console.log(this.emailOrPhone);
+    }
+
+  }
 
   login() {
-    if (this.authService.validatePassword(this.emailOrPhone, this.password)) {
-      // Redirect to dashboard or home page
-      console.log('Login successful');
+    this.loginError = '';
+    if (this.emailOrPhone && this.password) {
+      if (this.authService.validatePassword(this.emailOrPhone, this.password)) {
+        console.log('Login successful');
+        //this.isLoggedIn = true;
+        
+        this.router.navigate(['/logged-in']);
+      } else {
+        this.loginError = 'Incorrect Password. Please try again';
+      }
     } else {
-      this.loginError = 'Invalid credentials';
+      this.loginError = 'Please enter password';
     }
   }
 }

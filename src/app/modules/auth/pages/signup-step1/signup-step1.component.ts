@@ -10,27 +10,38 @@ export class SignupStep1Component implements OnInit {
   firstName: string = '';
   lastName: string = '';
   email: string = '';
+  password: string = '';
+  signUpError: string = '';
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-	// Load data from localStorage if available
-	const step1Data = JSON.parse(localStorage.getItem('signupStep1') || '{}');
-	if (step1Data) {
-	  this.firstName = step1Data.firstName || '';
-	  this.lastName = step1Data.lastName || '';
-	  this.email = step1Data.email || '';
+	if (typeof localStorage !== 'undefined') {
+	  const step1Data = JSON.parse(localStorage.getItem('signupStep1') || '{}');
+	  if (step1Data) {
+		this.firstName = step1Data.firstName || '';
+		this.lastName = step1Data.lastName || '';
+		this.email = step1Data.email || '';
+		this.password = step1Data.password || '';
+	  }
 	}
   }
 
-  continue() {
-	// Store current form data in localStorage
-	const step1Data = {
-	  firstName: this.firstName,
-	  lastName: this.lastName,
-	  email: this.email
-	};
-	localStorage.setItem('signupStep1', JSON.stringify(step1Data));
+  next() {
+    if (!this.firstName || !this.lastName || !this.email || !this.password) {
+      this.signUpError = 'All fields are required';
+      return;
+    }
+    
+	if (typeof localStorage !== 'undefined') {
+	  const step1Data = {
+		firstName: this.firstName,
+		lastName: this.lastName,
+		email: this.email,
+		password: this.password
+	  };
+	  localStorage.setItem('signupStep1', JSON.stringify(step1Data));
+	}
 	this.router.navigate(['/signup-step2']);
   }
 }

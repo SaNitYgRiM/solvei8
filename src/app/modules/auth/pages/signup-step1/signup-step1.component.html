@@ -1,15 +1,34 @@
-<div>
-  <h2>Signup Step 1</h2>
-  <form>
-	<label for="firstName">First Name:</label>
-	<input type="text" id="firstName" [(ngModel)]="firstName" name="firstName" required />
+<div class="signup-container">
+  <mat-card>
+	<mat-card-title>Create Account</mat-card-title>
+	<mat-card-content>
+	  <form>
+		<mat-form-field appearance="fill">
+		  <mat-label>First Name</mat-label>
+		  <input matInput [(ngModel)]="firstName" name="firstName" required>
+		</mat-form-field>
 
-	<label for="lastName">Last Name:</label>
-	<input type="text" id="lastName" [(ngModel)]="lastName" name="lastName" required />
+		<mat-form-field appearance="fill">
+		  <mat-label>Last Name</mat-label>
+		  <input matInput [(ngModel)]="lastName" name="lastName" required>
+		</mat-form-field>
 
-	<label for="email">Email:</label>
-	<input type="email" id="email" [(ngModel)]="email" name="email" required />
+		<mat-form-field appearance="fill">
+		  <mat-label>Email</mat-label>
+		  <input matInput [(ngModel)]="email" name="email" type="email" required>
+		</mat-form-field>
 
-	<button type="button" (click)="continue()">Continue</button>
-  </form>
+		<mat-form-field appearance="fill">
+		  <mat-label>Password</mat-label>
+		  <input matInput [(ngModel)]="password" name="password" type="password" required>
+		</mat-form-field>
+
+		<div *ngIf="signUpError" class="error-message">{{ signUpError }}</div>
+
+		<div class="button-group">
+		  <button mat-raised-button color="primary" (click)="next()">Next</button>
+		</div>
+	  </form>
+	</mat-card-content>
+  </mat-card>
 </div>

@@ -1,0 +1,59 @@
+
+body {
+    margin: 0;
+    overflow: hidden; 
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e0eafc; 
+    overflow: hidden;
+  }
+  
+  
+  .glass-card {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden; 
+  }
+  
+
+  .left {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.3); 
+  }
+ 
+  .right {
+    flex: 2;
+    padding: 40px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+  }
+  
+  .logo {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  .illustration {
+    max-width: 100%;
+  }
+  
