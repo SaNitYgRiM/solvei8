@@ -1,0 +1,15 @@
+<div>
+  <h2>Signup Step 1</h2>
+  <form>
+	<label for="firstName">First Name:</label>
+	<input type="text" id="firstName" [(ngModel)]="firstName" name="firstName" required />
+
+	<label for="lastName">Last Name:</label>
+	<input type="text" id="lastName" [(ngModel)]="lastName" name="lastName" required />
+
+	<label for="email">Email:</label>
+	<input type="email" id="email" [(ngModel)]="email" name="email" required />
+
+	<button type="button" (click)="continue()">Continue</button>
+  </form>
+</div>

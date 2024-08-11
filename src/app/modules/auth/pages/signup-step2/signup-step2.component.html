@@ -1,0 +1,26 @@
+<div>
+  <h2>Signup Step 2</h2>
+  <form>
+	<label for="organizationName">Organization Name:</label>
+	<input type="text" id="organizationName" [(ngModel)]="organizationName" name="organizationName" required />
+
+	<label for="designation">Designation:</label>
+	<select id="designation" [(ngModel)]="designation" name="designation" required>
+	  <option *ngFor="let designation of designations" [value]="designation">{{ designation }}</option>
+	</select>
+
+	<label for="birthDate">Birth Date:</label>
+	<input type="date" id="birthDate" [(ngModel)]="birthDate" name="birthDate" required />
+
+	<label for="city">City:</label>
+	<input type="text" id="city" [(ngModel)]="city" name="city" required />
+
+	<label for="pincode">Pincode:</label>
+	<input type="text" id="pincode" [(ngModel)]="pincode" name="pincode" required />
+
+	<div *ngIf="signUpError">{{ signUpError }}</div> <!-- Display error message -->
+
+	<button type="button" (click)="back()">Back</button>
+	<button type="button" (click)="submit()">Submit</button>
+  </form>
+</div>

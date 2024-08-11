@@ -1,0 +1,6 @@
+
+<form [formGroup]="welcomeForm" (ngSubmit)="onSubmit()">
+  <label for="emailOrPhone">Phone Number or Email:</label>
+  <input type="text" id="emailOrPhone" formControlName="emailOrPhone" required>
+  <button type="submit">Submit</button>
+</form>
